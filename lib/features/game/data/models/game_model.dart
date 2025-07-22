@@ -1,0 +1,113 @@
+import '../../domain/entities/game.dart';
+
+class GameModel extends Game {
+  const GameModel({
+    required super.id,
+    required super.category,
+    required super.phase,
+    required super.journey,
+    required super.location,
+    required super.date,
+    required super.time,
+    required super.teamAName,
+    required super.teamBName,
+    super.teamAScore = 0,
+    super.teamBScore = 0,
+    super.quarter = 1,
+    super.isFinished = false,
+    super.winnerTeam,
+    super.firstJudge,
+    super.secondJudge,
+    super.scorer,
+    super.timekeeper,
+    super.operator24,
+    required super.createdAt,
+    required super.updatedAt,
+    super.players,
+    super.events,
+    super.fouls,
+    super.timeouts,
+  });
+
+  factory GameModel.fromMap(Map<String, dynamic> map) {
+    return GameModel(
+      id: map['id'] as String,
+      category: map['category'] as String,
+      phase: map['phase'] as String,
+      journey: map['journey'] as String,
+      location: map['location'] as String,
+      date: DateTime.parse(map['date'] as String),
+      time: map['time'] as String,
+      teamAName: map['team_a_name'] as String,
+      teamBName: map['team_b_name'] as String,
+      teamAScore: map['team_a_score'] as int? ?? 0,
+      teamBScore: map['team_b_score'] as int? ?? 0,
+      quarter: map['quarter'] as int? ?? 1,
+      isFinished: (map['is_finished'] as int? ?? 0) == 1,
+      winnerTeam: map['winner_team'] as String?,
+      firstJudge: map['first_judge'] as String?,
+      secondJudge: map['second_judge'] as String?,
+      scorer: map['scorer'] as String?,
+      timekeeper: map['timekeeper'] as String?,
+      operator24: map['operator_24'] as String?,
+      createdAt: DateTime.parse(map['created_at'] as String),
+      updatedAt: DateTime.parse(map['updated_at'] as String),
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'category': category,
+      'phase': phase,
+      'journey': journey,
+      'location': location,
+      'date': date.toIso8601String(),
+      'time': time,
+      'team_a_name': teamAName,
+      'team_b_name': teamBName,
+      'team_a_score': teamAScore,
+      'team_b_score': teamBScore,
+      'quarter': quarter,
+      'is_finished': isFinished ? 1 : 0,
+      'winner_team': winnerTeam,
+      'first_judge': firstJudge,
+      'second_judge': secondJudge,
+      'scorer': scorer,
+      'timekeeper': timekeeper,
+      'operator_24': operator24,
+      'created_at': createdAt.toIso8601String(),
+      'updated_at': updatedAt.toIso8601String(),
+    };
+  }
+
+  factory GameModel.fromEntity(Game game) {
+    return GameModel(
+      id: game.id,
+      category: game.category,
+      phase: game.phase,
+      journey: game.journey,
+      location: game.location,
+      date: game.date,
+      time: game.time,
+      teamAName: game.teamAName,
+      teamBName: game.teamBName,
+      teamAScore: game.teamAScore,
+      teamBScore: game.teamBScore,
+      quarter: game.quarter,
+      isFinished: game.isFinished,
+      winnerTeam: game.winnerTeam,
+      firstJudge: game.firstJudge,
+      secondJudge: game.secondJudge,
+      scorer: game.scorer,
+      timekeeper: game.timekeeper,
+      operator24: game.operator24,
+      createdAt: game.createdAt,
+      updatedAt: game.updatedAt,
+      players: game.players,
+      events: game.events,
+      fouls: game.fouls,
+      timeouts: game.timeouts,
+    );
+  }
+}
